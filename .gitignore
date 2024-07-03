@@ -160,4 +160,9 @@ cython_debug/
 #.idea/
 
 data
-archive
+0-convert_10XMTX_to_anndata
+1-basic_QC_pre-cellbender 
+3-scANVI_label_transfer_annotation 
+4-cell_proportions_genotypes 
+6-cellular_circuits 
+5-interpretable_GPs
