@@ -11,13 +11,13 @@ library(ggalluvial)
 library(reticulate)
 options(stringsAsFactors = FALSE)
 
-use_python("/Users/cartalop/mambaforge/envs/scanpy/bin", required = TRUE)
+use_python("/Users/cartalop/miniforge3/envs/scanpy/bin/", required = TRUE)
 
 ### Read in data
 
 ad <- import("anndata", convert = FALSE)
 pd <- import("pandas", convert = FALSE)
-ad_object <- ad$read_h5ad("../../../data/Epithelial_Healthy-CTRL_anotated.h5ad")
+ad_object <- ad$read_h5ad("/Volumes/XF-11/wurzburg/hofmann_2023/DMD-WT_CMC-Immune_ctl240711.log.h5ad")
 
 ### Access expression matrix
 
