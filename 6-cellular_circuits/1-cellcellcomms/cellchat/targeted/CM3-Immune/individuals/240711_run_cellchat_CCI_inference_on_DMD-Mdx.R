@@ -11,13 +11,13 @@ library(ggalluvial)
 library(reticulate)
 options(stringsAsFactors = FALSE)
 
-use_python("/Users/cartalop/mambaforge/envs/scanpy/bin", required = TRUE)
+use_python("/Users/cartalop/miniforge3/envs/scanpy/bin/", required = TRUE)
 
 ### Read in data
 
 ad <- import("anndata", convert = FALSE)
 pd <- import("pandas", convert = FALSE)
-ad_object <- ad$read_h5ad("../../../data/Epithelial_COPD-CTRL_anotated.h5ad")
+ad_object <- ad$read_h5ad("/Volumes/XF-11/wurzburg/hofmann_2023/DMD-Mdx_CMC-Immune_ctl240711.log.h5ad")
 
 ### Access expression matrix
 
@@ -37,7 +37,7 @@ cellchat <- createCellChat(object = data.input, meta = meta, group.by = "cell_st
 
 ### Set up ligand-receptor interaction database for `cellchat`
 
-CellChatDB <- CellChatDB.human
+CellChatDB <- CellChatDB.mouse
 showDatabaseCategory(CellChatDB)
 dplyr::glimpse(CellChatDB$interaction)
 CellChatDB.use <- CellChatDB
@@ -49,7 +49,7 @@ cellchat <- subsetData(cellchat)
 
 cellchat <- identifyOverExpressedGenes(cellchat)
 cellchat <- identifyOverExpressedInteractions(cellchat)
-cellchat <- projectData(cellchat, PPI.human)
+#cellchat <- projectData(cellchat, PPI.mouse)
 
 cellchat <- computeCommunProb(cellchat, raw.use = TRUE)
 cellchat <- filterCommunication(cellchat, min.cells = 5)
@@ -58,7 +58,7 @@ cellchat <- filterCommunication(cellchat, min.cells = 5)
 
 df.net <- subsetCommunication(cellchat)
 head(df.net)
-write.table(df.net, sep = ',', row.names = FALSE, './inferences/Epithelial_COPD-CTRL_cellchat_net.csv')
+write.table(df.net, sep = ',', row.names = FALSE, 'DMD-Mdx_CMC-Immune_cellchat_net.csv')
 
 ### Infer cell-cell communication
 
@@ -100,12 +100,12 @@ cellchat <- netAnalysis_computeCentrality(cellchat, slot.name = "netP")
 
 options(repr.plot.width = 10, repr.plot.height = 10)
 gg1 <- netAnalysis_signalingRole_scatter(cellchat)
-gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("BMP", "Cholesterol"))
+gg2 <- netAnalysis_signalingRole_scatter(cellchat, signaling = c("OSM", "Cholesterol"))
 gg1 + gg2
 
 options(repr.plot.width = 5, repr.plot.height = 5)
-ht1 <- netAnalysis_signalingRole_heatmap(cellchat, pattern = "outgoing", width = 22, height = 26, color.heatmap = "YlGnBu")
-ht2 <- netAnalysis_signalingRole_heatmap(cellchat, pattern = "incoming", width = 22, height = 26, color.heatmap = "YlGnBu")
+ht1 <- netAnalysis_signalingRole_heatmap(cellchat, pattern = "outgoing", width = 18, height = 23, color.heatmap = "YlGnBu")
+ht2 <- netAnalysis_signalingRole_heatmap(cellchat, pattern = "incoming", width = 18, height = 23, color.heatmap = "YlGnBu")
 ht1 + ht2
 
 ### Identify global communication patterns
@@ -154,4 +154,4 @@ plotGeneExpression(cellchat, signaling = "Cholesterol")
 
 # Save object 
 
-saveRDS(cellchat, file = "../../../data/Epithelial_COPD-CTRL_anotated.rds")
+saveRDS(cellchat, file = "/Volumes/XF-11/wurzburg/hofmann_2023/DMD-Mdx_CMC-Immune_cellchat_ctl240711.rds")
