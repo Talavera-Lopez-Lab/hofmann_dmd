@@ -92,8 +92,8 @@ patchwork::wrap_plots(plots = gg)
 ### Visualise which pathways are active in the most significant cell states
 
 
-gg1 <- netAnalysis_signalingChanges_scatter(cellchat, idents.use = "vCM3", signaling.exclude = "MIF", comparison = c(1,2))
-gg2 <- netAnalysis_signalingChanges_scatter(cellchat, idents.use = "vCM3", signaling.exclude = "MIF", comparison = c(1,3))
+gg1 <- netAnalysis_signalingChanges_scatter(cellchat, idents.use = "vCM4", signaling.exclude = "MIF", comparison = c(1,2))
+gg2 <- netAnalysis_signalingChanges_scatter(cellchat, idents.use = "vCM4", signaling.exclude = "MIF", comparison = c(1,3))
 gg3 <- netAnalysis_signalingChanges_scatter(cellchat, idents.use = "Ly6ChiMo", signaling.exclude = "MIF", comparison = c(1,2))
 gg4 <- netAnalysis_signalingChanges_scatter(cellchat, idents.use = "Ly6ChiMo", signaling.exclude = "MIF", comparison = c(1,3))
 gg5 <- netAnalysis_signalingChanges_scatter(cellchat, idents.use = "CD8Temra", signaling.exclude = "MIF", comparison = c(1,2))
