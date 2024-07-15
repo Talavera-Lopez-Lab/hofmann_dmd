@@ -160,3 +160,12 @@ cython_debug/
 #.idea/
 
 data
+archive
+raw_data
+*.h5
+*.csv
+*.pdf
+*.png
+*.html
+*.h5ad
+*.gz
