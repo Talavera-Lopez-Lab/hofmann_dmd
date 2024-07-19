@@ -166,3 +166,8 @@ data
 4-cell_proportions_genotypes 
 6-cellular_circuits 
 5-interpretable_GPs
+plots
+*.tsv
+*.mtx
+*.txt
+*.h5ad
