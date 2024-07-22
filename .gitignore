@@ -171,3 +171,4 @@ plots
 *.mtx
 *.txt
 *.h5ad
+*.png
