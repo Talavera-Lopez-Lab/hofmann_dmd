@@ -172,3 +172,4 @@ plots
 *.txt
 *.h5ad
 *.png
+*.csv
