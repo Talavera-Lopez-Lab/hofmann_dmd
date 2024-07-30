@@ -6,7 +6,7 @@ base_output_dir="/home/skolla/Github/hofmann_dmd/cellbender"
 
 # Define samples and fpr values
 samples=("A9_2" "A10_2" "A11_2" "A12_2" "B1_2" "B2_2") 
-fpr_values=(0.02 0.03 0.05)
+fpr_values=(0.01 0.03 0.07 0.1)
 
 # Function to run cellbender with specified model type
 run_cellbender_naive() {
@@ -15,7 +15,7 @@ run_cellbender_naive() {
     local fpr=$3
 
     local input_file="$input_dir/$sample/raw_feature_bc_matrix"
-    local output_dir="$base_output_dir/${fpr}_naive/$sample"
+    local output_dir="$base_output_dir/${fpr}_ambient/$sample"
 
     mkdir -p $output_dir
     cd $output_dir
@@ -28,7 +28,7 @@ run_cellbender_naive() {
         --output $output_dir/${sample}.h5 \
         --cuda \
         --fpr $fpr \
-        --model naive
+        --model ambient
 }
 
 # Loop through each sample and fpr value
