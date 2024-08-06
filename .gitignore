@@ -169,3 +169,6 @@ raw_data
 *.html
 *.h5ad
 *.gz
+*.pkl
+*.xlsx
+*.gmt
